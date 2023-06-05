@@ -4,7 +4,7 @@ server:
       force: 'true'
       enabled: 'true'
       charset: UTF-8
-    context-path: /blog
+    context-path: /
   port: '8080'
 spring:
   datasource:

@@ -21,7 +21,7 @@ let index = {
         $.ajax({
             // 회원가입 요청
             type : "POST",
-            url : "/blog/api/user",
+            url : "/api/user",
             data : JSON.stringify(data),    // http body 데이터
             contentType : "application/json; charset=utf-8",    // body 데이터가 어떤 타입?
             dataType : "json"   // 요청을 서버로해서 응답이 왔을 때, 기본적으로 모든 것이 문자열 (JSON 이라면) => javascript오브젝트로 변경
@@ -46,7 +46,7 @@ let index = {
         // console.log(data);
         $.ajax({
             type : "POST",
-            url : "/blog/api/user/login",
+            url : "/api/user/login",
             data : JSON.stringify(data),    // http body 데이터
             contentType : "application/json; charset=utf-8",    // body 데이터가 어떤 타입?
             dataType : "json"   // 요청을 서버로해서 응답이 왔을 때, 기본적으로 모든 것이 문자열 (JSON 이라면) => javascript오브젝트로 변경
