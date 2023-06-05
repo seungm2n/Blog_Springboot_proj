@@ -26,7 +26,7 @@
     <button id="btn-login" class="btn btn-primary">로그인</button>
 </div>
 
-<script src="/blog/js/user.js"></script>
+<script src="/js/user.js"></script>
 <!-- 푸터 시작 -->
 <%@ include file="../layout/footer.jsp"%>
 <!-- 푸터 끝 -->

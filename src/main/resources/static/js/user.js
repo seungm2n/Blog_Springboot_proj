@@ -29,7 +29,7 @@ let index = {
             // 성공 시
             alert("회원가입이 완료되었습니다.");
             // console.log(resp);
-            location.href="/blog";
+            location.href="/";
         }).fail(function(error){
             // 실패 시
             alert(JSON.stringify(error));
@@ -54,7 +54,7 @@ let index = {
             // 성공 시
             alert("로그인이 완료되었습니다.");
             // console.log(resp);
-            location.href="/blog";
+            location.href="/";
         }).fail(function(error){
             // 실패 시
             alert(JSON.stringify(error));
