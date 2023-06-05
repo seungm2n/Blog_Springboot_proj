@@ -1,0 +1,69 @@
+server:
+  servlet:
+    encoding:
+      force: 'true'
+      enabled: 'true'
+      charset: UTF-8
+    context-path: /blog
+  port: '8080'
+spring:
+  datasource:
+    password: '0111'
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    url: jdbc:mariadb://localhost:3306/blog?serverTimezone=Asia/Seoul
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: 'false'
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: 'true'
+    open-in-view: 'true'
+    properties:
+      hibernate:
+        format_sql: 'true'
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  jackson:
+    serialization:
+      fail-on-empty-beans: 'false'
+
+
+#server:
+#  port: 8080
+#  servlet:
+#    context-path: /blog
+#    encoding:
+#      charset: UTF-8
+#      enabled: true
+#      force: true
+#
+#spring:
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+#
+#  datasource:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://localhost:3306/blog?serverTimezone=Asia/Seoul
+#    username: root
+#    password: 0111
+#
+#  jpa:
+#    open-in-view: true
+#    hibernate:
+#      ddl-auto: update
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      use-new-id-generator-mappings: false
+#    show-sql: true
+#    properties:
+#      hibernate.format_sql: true
+#
+#  jackson:
+#    serialization:
+#      fail-on-empty-beans: false
