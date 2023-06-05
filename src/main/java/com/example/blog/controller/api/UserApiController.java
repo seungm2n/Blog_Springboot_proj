@@ -18,10 +18,7 @@ public class UserApiController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private HttpSession session;
-
-    @PostMapping("/api/user")
+    @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) {
         System.out.println("UserApiController : Save 호출");
         // 실제로 DB에 insert
@@ -30,8 +27,11 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
+}
+
+/*  // 전통적인 방식
     @PostMapping("/api/user/login")
-    public ResponseDto<Integer> login(@RequestBody User user) {
+    public ResponseDto<Integer> login(@RequestBody User user, HttpSession session) {
         System.out.println("UserApiController : Login 호출");
         User principal = userService.login(user);
 
@@ -40,4 +40,4 @@ public class UserApiController {
         }
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
-}
+*/
