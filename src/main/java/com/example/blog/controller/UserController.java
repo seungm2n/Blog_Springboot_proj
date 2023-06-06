@@ -10,15 +10,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 
+    // 회원가입
     @GetMapping("/auth/joinForm")
     public String joinForm() {
 
         return "user/joinForm";
     }
 
+    // 로그인
     @GetMapping("/auth/loginForm")
     public String loginForm() {
 
         return "user/loginForm";
+    }
+
+    // 회원정보 수정
+    @GetMapping("/user/updateForm")
+    public String updateForm() {
+        return "user/updateForm";
     }
 }
