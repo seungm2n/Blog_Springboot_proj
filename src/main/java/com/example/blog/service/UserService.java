@@ -17,6 +17,7 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder encode;
 
+    // 암호화된 비밀번호를 저장하여 회원가입
     @Transactional
     public void signUp(User user) {
         String rawPassword = user.getPassword();    // password 원문

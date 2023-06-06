@@ -3,6 +3,9 @@ let index = {
         $("#btn-save").on("click", () => {
             this.save();
         });
+        $("#btn-delete").on("click", () => {
+            this.deleteById();
+        });
     },
 
     save: function () {
@@ -20,6 +23,25 @@ let index = {
         }).done(function(resp){
             // 성공 시
             alert("글이 게시되었습니다.");
+            // console.log(resp);
+            location.href="/";
+        }).fail(function(error){
+            // 실패 시
+            alert(JSON.stringify(error));
+        }); // ajax 통신을 이용해서 3개의 데이터를 json으로 변경 -> insert 요청
+
+    },
+
+    deleteById: function () {
+        var id = $("#id").text();
+
+        $.ajax({
+            type : "DELETE",
+            url : "/api/board/" + id,
+            dataType : "json"
+        }).done(function(resp){
+            // 성공 시
+            alert("게시글이 삭제되었습니다.");
             // console.log(resp);
             location.href="/";
         }).fail(function(error){

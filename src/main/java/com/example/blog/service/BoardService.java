@@ -6,9 +6,13 @@ import com.example.blog.model.Board;
 import com.example.blog.model.RoleType;
 import com.example.blog.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class BoardService {
@@ -16,6 +20,7 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
+    // 작성한 게시글을 저장
     @Transactional
     public void writeBoard(Board board, User user) {
         board.setCount(0);
@@ -23,4 +28,22 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    // 게시글 리스트를 불러옴
+    @Transactional(readOnly = true)
+    public Page<Board> getBoards(Pageable pageable) {
+        return boardRepository.findAll(pageable);
+    }
+
+    // 글 상세보기
+    @Transactional(readOnly = true)
+    public Board boardDetail(int id) {
+        return boardRepository.findById(id)
+                .orElseThrow(() -> {
+                    return new IllegalArgumentException("존재하지 않는 게시글입니다.");
+                });
+    }
+    @Transactional
+    public void boardDelete(int id) {
+        boardRepository.deleteById(id);
+    }
 }
