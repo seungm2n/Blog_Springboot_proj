@@ -18,7 +18,7 @@ spring:
       use-new-id-generator-mappings: 'false'
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: 'true'
+    #show-sql: 'true'
     open-in-view: 'true'
     properties:
       hibernate:

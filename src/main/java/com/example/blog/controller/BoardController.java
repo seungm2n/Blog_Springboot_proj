@@ -26,6 +26,13 @@ public class BoardController {
         return "index";     // view
     }
 
+    // 글 수정하기
+    @GetMapping("/board/{id}/updateForm")
+    public String updateForm(@PathVariable int id, Model model) {
+            model.addAttribute("board", boardService.boardDetail(id));
+        return "board/updateForm";
+    }
+
     // 글 상세보기
     @GetMapping("/board/{id}")
     public String findById(@PathVariable int id, Model model) {
