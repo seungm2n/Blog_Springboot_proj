@@ -146,13 +146,14 @@ public class UserController {
                 .username(kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId())
                 .password(cosKey)
                 .email(kakaoProfile.getKakao_account().getEmail())
+                .oauth("kakako")
                 .build();
 
         // 이미 가입한 회원인지 아닌지 체크
         User originUser = userService.findByUser(kakaoUser.getUsername());
 
         if (originUser.getUsername() == null){
-            System.out.println(" ===== 기 존 회 원 =====");
+            System.out.println(" ===== 기 존 회 원 아 님 =====");
             userService.signUp(kakaoUser);
         }
 

@@ -35,6 +35,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleType role;    // Enum을 쓰는게 좋음. 나중에 도메인 생성 이유
 
+    private String oauth;   // 간편회원가입 체크
+    
     @CreationTimestamp      // 시간 자동 입력
     private Timestamp createDate;
 }
