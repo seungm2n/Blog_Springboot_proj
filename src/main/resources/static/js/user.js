@@ -40,6 +40,7 @@ let index = {
         // alert("user의 회원가입 save함수 호출");
         let data ={
             id : $("#id").val(),
+            username : $("#username").val(),
             password : $("#password").val(),
             email : $("#email").val()
         };

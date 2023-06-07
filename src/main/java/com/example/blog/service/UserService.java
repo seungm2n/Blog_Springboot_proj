@@ -4,6 +4,12 @@ import com.example.blog.Repository.UserRepository;
 import com.example.blog.model.RoleType;
 import com.example.blog.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +45,7 @@ public class UserService {
         String encPassword = encode.encode(rawPassword);     // password 해쉬
         persistance.setPassword(encPassword);
         persistance.setEmail(user.getEmail());
+
         // 회원수정 함수 종료 시(서비스 종료 시) 트랜잭션이 끝나며, Auto Commit.
 
     }
