@@ -23,6 +23,15 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder encode;
 
+    @Transactional(readOnly = true)
+    public User findByUser(String username) {
+
+        User user = userRepository.findByUsername(username).orElseGet(() -> {
+         return new User();
+        });
+
+        return user;
+    }
     // 암호화된 비밀번호를 저장하여 회원가입
     @Transactional
     public void signUp(User user) {
@@ -47,6 +56,5 @@ public class UserService {
         persistance.setEmail(user.getEmail());
 
         // 회원수정 함수 종료 시(서비스 종료 시) 트랜잭션이 끝나며, Auto Commit.
-
     }
 }

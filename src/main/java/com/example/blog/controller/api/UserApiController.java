@@ -45,7 +45,7 @@ public class UserApiController {
         // 하지만 세션값은 변경되지 않은 상태
         userService.update(user);
 
-        // 세션 등록
+        // 세션 등록 및 로그인 처리
         Authentication authentication
                 = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);

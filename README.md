@@ -6,6 +6,7 @@
 - Bootstrap
 - Maven
 - JSTL
+- summernote
 
 ### 오류해결
 로그인 시 500에러 확인 => form action 처리 안해줌
