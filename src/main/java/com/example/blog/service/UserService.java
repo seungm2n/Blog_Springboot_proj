@@ -49,12 +49,15 @@ public class UserService {
         User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
             return new IllegalArgumentException("해당 유저를 찾을 수 없습니다.");
         });
-        // 비밀번호 암호화 저장
-        String rawPassword = user.getPassword();    // password 원문
-        String encPassword = encode.encode(rawPassword);     // password 해쉬
-        persistance.setPassword(encPassword);
-        persistance.setEmail(user.getEmail());
 
+        // Validation 체크 - 간편회원가입 여부 => oauth필드에 값이 없으면 수정 가능
+        if(persistance.getOauth() == null || persistance.getOauth().equals("")) {
+            // 비밀번호 암호화 저장
+            String rawPassword = user.getPassword();    // password 원문
+            String encPassword = encode.encode(rawPassword);     // password 해쉬
+            persistance.setPassword(encPassword);
+            persistance.setEmail(user.getEmail());
+        }
         // 회원수정 함수 종료 시(서비스 종료 시) 트랜잭션이 끝나며, Auto Commit.
     }
 }
