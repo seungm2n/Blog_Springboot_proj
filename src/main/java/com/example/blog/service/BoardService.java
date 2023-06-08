@@ -1,24 +1,27 @@
 package com.example.blog.service;
 
 import com.example.blog.Repository.BoardRepository;
-import com.example.blog.Repository.UserRepository;
+import com.example.blog.Repository.ReplyRepository;
+import com.example.blog.dto.ReplySaveRequestDto;
 import com.example.blog.model.Board;
-import com.example.blog.model.RoleType;
 import com.example.blog.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor    // 생성자 만들 때, 초기화 해줌
 public class BoardService {
 
-    @Autowired
-    private BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
+    private final ReplyRepository replyRepository;
+
+//    public BoardService(BoardRepository bRepository, ReplyRepository rRepository) {
+//        this.boardRepository = bRepository;
+//        this.replyRepository = rRepository;
+//    }
 
     // 작성한 게시글을 저장
     @Transactional
@@ -59,5 +62,19 @@ public class BoardService {
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
         // 해당 함수 종료 시(Service가 종료될 때) 트랜잭션이 종료 -> 이 때 더티체킹 -> 자동 업데이트 db flush.
+    }
+
+    // 댓글 작성
+    @Transactional
+    public void replyWrite(ReplySaveRequestDto replySaveRequestDto) {
+
+        int result = replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(), replySaveRequestDto.getContent());
+        System.out.println(result);
+    }
+
+    // 댓글 삭제
+    @Transactional
+    public void replyDelete(int replyId) {
+        replyRepository.deleteById(replyId);
     }
 }

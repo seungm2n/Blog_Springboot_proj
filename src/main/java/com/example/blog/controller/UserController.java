@@ -8,7 +8,7 @@ import com.example.blog.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,26 +23,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.UUID;
 
 // 인증이 안된 사용자들이 출입할 수 있는 경로를 /auth/** 허용
 // 그냥 주소가 / 이면 index.jsp 허용
 // static 이하에 있는 /js/**, /css/**, /images/**
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
+
+    private final UserService userService;
+    private final AuthenticationManager authenticationManager;
 
     @Value("${cos.key}")
     private String cosKey;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     // 회원가입
     @GetMapping("/auth/joinForm")

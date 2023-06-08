@@ -27,25 +27,38 @@
     <hr/>
 
     <div class="card">
-        <div class="card-body"><textarea class="form-control" row="1"></textarea></div>
-        <div class="card-footer">
-            <button class="btn btn-primary">등록</button>
-        </div>
+        <form>
+            <input type="hidden" id="boardId" value="${board.id}"/>
+            <input type="hidden" id="userId" value="${principal.user.id}"/>
+            <div class="card-body">
+                <textarea id="reply-content" class="form-control" row="1"></textarea>
+            </div>
+            <div class="card-footer">
+                <button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
+            </div>
+        </form>
     </div>
     <br/>
     <div class="card">
-        <div class="card-header">댓글리스트</div>
-        <ul id="comment--items" class="list-group">
-            <li id="comment--1" class="list-group-item d-flex justify-content-between">
-                <div>댓글 내용 출력</div>
-                <div class="d-flex">
-                    <div class="font-italic">작성자 : 관리자 &nbsp;</div>
-                <button class="badge">삭제</button>
-                </div>
-            </li>
+        <div class="card-header">
+            <strong>Comment</strong>
+        </div>
+        <ul id="reply-box" class="list-group">
+            <c:forEach var="reply" items="${board.replys}">
+                <li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
+                    <div>${reply.content}</div>
+                    <div class="d-flex">
+                        <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
+                        <c:if test="${reply.user.id == principal.user.id}">
+                            <button class="badge">수정</button>
+                            &nbsp;
+                            <button onclick="index.replyDelete(${board.id},${reply.id})" class="badge">삭제</button>
+                        </c:if>
+                    </div>
+                </li>
+            </c:forEach>
         </ul>
     </div>
-
 </div>
 
 <script src="/js/board.js"></script>

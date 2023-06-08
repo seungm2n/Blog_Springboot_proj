@@ -3,6 +3,7 @@ package com.example.blog.service;
 import com.example.blog.Repository.UserRepository;
 import com.example.blog.model.RoleType;
 import com.example.blog.model.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.context.annotation.Bean;
@@ -15,13 +16,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private BCryptPasswordEncoder encode;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encode;
 
     @Transactional(readOnly = true)
     public User findByUser(String username) {

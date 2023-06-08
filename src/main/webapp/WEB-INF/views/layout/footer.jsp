@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <br/>
     <div class="jumbotron text-center fItem" style="margin-bottom:0; background-color: #343a40!important">
-        <hr style="border-color: #fff"/>
+        <hr style="color: #fff"/>
         <p class="fItem">Create by seungm2n2</p>
         <a class="nav-link fItem" href="https://seungm2n.github.io/">GitBlog</a>
         <a class="nav-link fItem" href="https://codifi.tistory.com/">Blog</a>
@@ -14,6 +14,5 @@
 <style>
     .fItem {
         color: #fff;
-
     }
 </style>
