@@ -2,21 +2,19 @@ package com.example.blog.config.auth;
 
 import com.example.blog.Repository.UserRepository;
 import com.example.blog.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service    // Bean 등록
+@RequiredArgsConstructor
 public class PrincipalDetailService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-
-
-    // 스프링이 로그인 요청을 가로챌 떄, username과 password 변수를 가로채는데
+    // 스프링이 로그인 요청을 가로챌 때, username과 password 변수를 가로채는데
     // password 부분 처리는 알아서 한다.
     // 그래서 username이 DB에 있는지만 확인해주면 됨.
     @Override

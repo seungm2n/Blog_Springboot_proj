@@ -1,7 +1,7 @@
 package com.example.blog.config;
 
 import com.example.blog.config.auth.PrincipalDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,10 +16,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration      // 빈등록 (IoC관리)
 @EnableWebSecurity  // 시큐리티 필터로 등록이 된다
 @EnableGlobalMethodSecurity(prePostEnabled = true)  // 특정 주소로 접근을 하면 권한 및 인증을 미리 체크 하겠다는 뜻
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private PrincipalDetailService principalDetailService;
+    private final PrincipalDetailService principalDetailService;
 
     @Bean
     @Override
