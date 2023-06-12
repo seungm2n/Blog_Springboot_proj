@@ -1,5 +1,5 @@
 #### 카카오 API 앱키
-
+${app_key}
 
 #### Web Domain
 http://localhost:8080
